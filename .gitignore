@@ -1,0 +1,11 @@
+**/bin/
+**/obj/
+.nuget/
+.dotnet-home/
+artifacts/
+TestResults/
+*.db
+*.db-shm
+*.db-wal
+.vs/
+*.user

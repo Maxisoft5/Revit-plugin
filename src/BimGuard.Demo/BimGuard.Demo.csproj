@@ -1,0 +1,7 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup><TargetFramework>net8.0-windows</TargetFramework><OutputType>WinExe</OutputType><UseWPF>true</UseWPF></PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="../BimGuard.Wpf/BimGuard.Wpf.csproj" />
+    <None Include="../../samples/model-with-issues.json" Link="Samples/model-with-issues.json" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+</Project>

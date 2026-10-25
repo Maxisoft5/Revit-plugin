@@ -1,0 +1,31 @@
+{
+  "documentKey": "demo-clean",
+  "title": "Чистая модель · АР",
+  "elements": [
+    {
+      "id": 101,
+      "uniqueId": "demo-wall-101",
+      "category": "Walls",
+      "name": "Стена • Кирпич 250 мм",
+      "mark": "W-01",
+      "level": "01 — Первый этаж"
+    },
+    {
+      "id": 402,
+      "uniqueId": "demo-room-402",
+      "category": "Rooms",
+      "name": "Помещение • Переговорная",
+      "mark": "102",
+      "level": "01 — Первый этаж",
+      "areaSquareMeters": 26.5
+    },
+    {
+      "id": 501,
+      "uniqueId": "demo-floor-501",
+      "category": "Floors",
+      "name": "Перекрытие • Монолит 200",
+      "mark": "П-01",
+      "level": "01 — Первый этаж"
+    }
+  ]
+}

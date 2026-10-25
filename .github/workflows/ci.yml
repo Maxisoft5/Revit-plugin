@@ -1,0 +1,27 @@
+name: build-and-test
+on:
+  push:
+  pull_request:
+jobs:
+  verify:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: |
+            10.0.400
+            8.0.x
+      - name: Build and run all tests
+        shell: pwsh
+        run: ./scripts/Test.ps1
+      - name: Create Revit package
+        shell: pwsh
+        run: ./scripts/Package.ps1 -SkipTests
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: bim-guard-revit2026-and-tests
+          path: |
+            artifacts/BimGuard-Revit2026.zip
+            artifacts/test-results/*.trx

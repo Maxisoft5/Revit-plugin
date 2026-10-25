@@ -1,0 +1,16 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/BimGuard.Core/BimGuard.Core.csproj" />
+    <Project Path="src/BimGuard.Presentation/BimGuard.Presentation.csproj" />
+    <Project Path="src/BimGuard.Infrastructure/BimGuard.Infrastructure.csproj" />
+    <Project Path="src/BimGuard.Cli/BimGuard.Cli.csproj" />
+    <Project Path="src/BimGuard.Wpf/BimGuard.Wpf.csproj" />
+    <Project Path="src/BimGuard.Demo/BimGuard.Demo.csproj" />
+    <Project Path="src/BimGuard.Revit/BimGuard.Revit.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/BimGuard.Unit.Tests/BimGuard.Unit.Tests.csproj" />
+    <Project Path="tests/BimGuard.Integration.Tests/BimGuard.Integration.Tests.csproj" />
+    <Project Path="tests/BimGuard.E2E.Tests/BimGuard.E2E.Tests.csproj" />
+  </Folder>
+</Solution>

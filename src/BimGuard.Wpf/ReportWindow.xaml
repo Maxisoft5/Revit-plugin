@@ -1,0 +1,188 @@
+<Window x:Class="BimGuard.Wpf.ReportWindow"
+ xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+ xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+ Title="BIM Guard · Проверка качества модели" Width="1280" Height="820"
+ MinWidth="1060" MinHeight="720" WindowStartupLocation="CenterScreen"
+ Background="#F4F6F8" FontFamily="Segoe UI" Foreground="#172B3A">
+ <Window.Resources>
+  <Style TargetType="Button">
+   <Setter Property="Padding" Value="16,10"/><Setter Property="Margin" Value="6,0,0,0"/>
+   <Setter Property="Background" Value="White"/><Setter Property="BorderBrush" Value="#D5DFE6"/>
+   <Setter Property="Foreground" Value="#172B3A"/><Setter Property="Cursor" Value="Hand"/>
+  </Style>
+  <Style TargetType="DataGrid">
+   <Setter Property="AutoGenerateColumns" Value="False"/><Setter Property="IsReadOnly" Value="True"/>
+   <Setter Property="CanUserAddRows" Value="False"/><Setter Property="CanUserDeleteRows" Value="False"/>
+   <Setter Property="SelectionMode" Value="Single"/><Setter Property="SelectionUnit" Value="FullRow"/>
+   <Setter Property="HeadersVisibility" Value="Column"/><Setter Property="GridLinesVisibility" Value="Horizontal"/>
+   <Setter Property="HorizontalGridLinesBrush" Value="#E9EDF1"/><Setter Property="BorderThickness" Value="0"/>
+   <Setter Property="RowHeight" Value="48"/><Setter Property="Background" Value="White"/>
+   <Setter Property="AlternatingRowBackground" Value="#FAFBFC"/>
+   <Setter Property="EnableRowVirtualization" Value="True"/>
+  </Style>
+  <Style TargetType="DataGridColumnHeader">
+   <Setter Property="Background" Value="#EDF2F5"/><Setter Property="Foreground" Value="#536879"/>
+   <Setter Property="Padding" Value="10,12"/><Setter Property="FontWeight" Value="SemiBold"/>
+   <Setter Property="BorderThickness" Value="0"/>
+  </Style>
+  <Style TargetType="DataGridCell">
+   <Setter Property="Padding" Value="10,8"/><Setter Property="BorderThickness" Value="0"/>
+   <Setter Property="VerticalContentAlignment" Value="Center"/>
+   <Setter Property="Template"><Setter.Value><ControlTemplate TargetType="DataGridCell">
+    <Border Padding="{TemplateBinding Padding}" Background="{TemplateBinding Background}">
+     <ContentPresenter VerticalAlignment="Center"/>
+    </Border>
+   </ControlTemplate></Setter.Value></Setter>
+  </Style>
+  <Style x:Key="Card" TargetType="Border">
+   <Setter Property="Background" Value="White"/><Setter Property="CornerRadius" Value="8"/>
+   <Setter Property="BorderBrush" Value="#E1E7EC"/><Setter Property="BorderThickness" Value="1"/>
+   <Setter Property="Padding" Value="20,16"/>
+  </Style>
+ </Window.Resources>
+ <Grid>
+  <Grid.ColumnDefinitions><ColumnDefinition Width="190"/><ColumnDefinition Width="*"/></Grid.ColumnDefinitions>
+  <Border Background="#122B39">
+   <Grid Margin="22,28">
+    <Grid.RowDefinitions><RowDefinition Height="Auto"/><RowDefinition Height="Auto"/><RowDefinition Height="*"/><RowDefinition Height="Auto"/></Grid.RowDefinitions>
+    <StackPanel>
+     <Border Background="#36D3AD" CornerRadius="7" Width="40" Height="40" HorizontalAlignment="Left">
+      <TextBlock Text="BG" Foreground="#122B39" FontWeight="Bold" FontSize="19" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+     </Border>
+     <TextBlock Text="BIM GUARD" Foreground="White" FontSize="19" FontWeight="Bold" Margin="0,16,0,4"/>
+     <TextBlock Text="Качество модели" Foreground="#A8C0CE" FontSize="12"/>
+    </StackPanel>
+    <Border Grid.Row="1" Background="#234454" CornerRadius="6" Margin="-8,38,-8,0" Padding="12">
+     <TextBlock Text="✓  Проверка модели" Foreground="#66E4C4" FontWeight="SemiBold"/>
+    </Border>
+    <StackPanel Grid.Row="2" Margin="0,34,0,0">
+     <TextBlock Text="ПРАВИЛА ПРОВЕРКИ" Foreground="#7F9CAA" FontSize="10" FontWeight="SemiBold" Margin="0,0,0,18"/>
+     <TextBlock Text="01  Заполнение марок" Foreground="#D0DFE7" Margin="0,0,0,15"/>
+     <TextBlock Text="02  Дубликаты марок" Foreground="#D0DFE7" Margin="0,0,0,15"/>
+     <TextBlock Text="03  Привязка к уровню" Foreground="#D0DFE7" Margin="0,0,0,15"/>
+     <TextBlock Text="04  Площадь помещений" Foreground="#D0DFE7" TextWrapping="Wrap"/>
+    </StackPanel>
+    <StackPanel Grid.Row="3">
+     <TextBlock Text="REVIT 2026" Foreground="#66E4C4" FontSize="11" FontWeight="SemiBold"/>
+     <TextBlock Text="Только чтение модели" Foreground="#8DA8B6" FontSize="11" Margin="0,7,0,0"/>
+    </StackPanel>
+   </Grid>
+  </Border>
+  <Grid Grid.Column="1" Margin="28,26,28,22">
+   <Grid.RowDefinitions>
+    <RowDefinition Height="Auto"/><RowDefinition Height="Auto"/><RowDefinition Height="*"/>
+    <RowDefinition Height="Auto"/>
+   </Grid.RowDefinitions>
+   <Grid Margin="0,0,0,24">
+    <Grid.ColumnDefinitions><ColumnDefinition Width="*"/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions>
+    <StackPanel>
+     <TextBlock Text="АУДИТ / АРХИТЕКТУРНАЯ МОДЕЛЬ" Foreground="#628092" FontSize="10" FontWeight="SemiBold"/>
+     <TextBlock Text="{Binding Report.Title}" FontSize="26" FontWeight="SemiBold" Margin="0,7,12,5" TextTrimming="CharacterEllipsis"/>
+     <TextBlock Foreground="#728595" FontSize="11">
+      <Run Text="Последняя проверка: "/><Run Text="{Binding Report.CreatedAt.LocalDateTime, Mode=OneWay, StringFormat=dd.MM.yyyy HH:mm}"/>
+     </TextBlock>
+    </StackPanel>
+    <StackPanel Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center">
+     <Button Content="Экспорт CSV" Click="ExportCsv" AutomationProperties.AutomationId="ExportCsv"/>
+     <Button Content="JSON" Click="ExportJson" AutomationProperties.AutomationId="ExportJson"/>
+    </StackPanel>
+   </Grid>
+   <Grid Grid.Row="1" Margin="0,0,0,22">
+    <Grid.ColumnDefinitions><ColumnDefinition Width="*"/><ColumnDefinition Width="*"/><ColumnDefinition Width="*"/></Grid.ColumnDefinitions>
+    <Border Style="{StaticResource Card}" Margin="0,0,12,0">
+     <StackPanel><TextBlock Text="ЭЛЕМЕНТОВ ПРОВЕРЕНО" FontSize="10" Foreground="#728595" FontWeight="SemiBold"/>
+      <TextBlock Text="{Binding Report.ElementCount}" FontSize="34" FontWeight="SemiBold" Margin="0,5,0,0"/>
+     </StackPanel>
+    </Border>
+    <Border Grid.Column="1" Style="{StaticResource Card}" Margin="0,0,12,0">
+     <StackPanel><TextBlock Text="ОШИБКИ" FontSize="10" Foreground="#A74141" FontWeight="SemiBold"/>
+      <TextBlock Text="{Binding Report.ErrorCount}" FontSize="34" FontWeight="SemiBold" Foreground="#C04A43" Margin="0,5,0,0"/>
+     </StackPanel>
+    </Border>
+    <Border Grid.Column="2" Style="{StaticResource Card}">
+     <StackPanel><TextBlock Text="ПРЕДУПРЕЖДЕНИЯ" FontSize="10" Foreground="#997029" FontWeight="SemiBold"/>
+      <TextBlock Text="{Binding Report.WarningCount}" FontSize="34" FontWeight="SemiBold" Foreground="#B27E24" Margin="0,5,0,0"/>
+     </StackPanel>
+    </Border>
+   </Grid>
+   <TabControl Grid.Row="2" BorderBrush="#DFE6EB" Background="White" Padding="12">
+    <TabItem Header="  Замечания  ">
+     <Grid Margin="0,12,0,0">
+      <Grid.RowDefinitions><RowDefinition Height="Auto"/><RowDefinition Height="*"/><RowDefinition Height="Auto"/></Grid.RowDefinitions>
+      <Grid Margin="0,0,0,14">
+       <Grid.ColumnDefinitions><ColumnDefinition Width="*"/><ColumnDefinition Width="200"/></Grid.ColumnDefinitions>
+       <TextBox Text="{Binding Query, UpdateSourceTrigger=PropertyChanged}" Padding="10,8" Margin="0,0,12,0"
+        BorderBrush="#D5DFE6" ToolTip="Поиск по ID, правилу, категории и описанию"
+        AutomationProperties.Name="Поиск замечаний" AutomationProperties.AutomationId="IssueSearch"/>
+       <ComboBox Grid.Column="1" SelectedIndex="{Binding SeverityIndex}" Padding="8,6"
+        AutomationProperties.Name="Важность" AutomationProperties.AutomationId="SeverityFilter">
+        <ComboBoxItem Content="Все замечания"/><ComboBoxItem Content="Только ошибки"/><ComboBoxItem Content="Только предупреждения"/>
+       </ComboBox>
+      </Grid>
+      <DataGrid Grid.Row="1" ItemsSource="{Binding VisibleIssues}" SelectedItem="{Binding SelectedIssue}"
+       AutomationProperties.AutomationId="IssuesGrid">
+       <DataGrid.Columns>
+        <DataGridTextColumn Header="Код" Binding="{Binding RuleId}" Width="72"/>
+        <DataGridTemplateColumn Header="Важность" Width="106">
+         <DataGridTemplateColumn.CellTemplate><DataTemplate>
+          <Border CornerRadius="4" Padding="6,4" HorizontalAlignment="Left">
+           <Border.Style><Style TargetType="Border"><Setter Property="Background" Value="#FFF3D9"/>
+            <Style.Triggers><DataTrigger Binding="{Binding Severity}" Value="Error"><Setter Property="Background" Value="#FCE9E7"/></DataTrigger></Style.Triggers>
+           </Style></Border.Style>
+           <TextBlock FontSize="10" FontWeight="SemiBold">
+            <TextBlock.Style><Style TargetType="TextBlock"><Setter Property="Text" Value="Внимание"/><Setter Property="Foreground" Value="#9B6B17"/>
+             <Style.Triggers><DataTrigger Binding="{Binding Severity}" Value="Error">
+              <Setter Property="Text" Value="Ошибка"/><Setter Property="Foreground" Value="#B14038"/>
+             </DataTrigger></Style.Triggers>
+            </Style></TextBlock.Style>
+           </TextBlock>
+          </Border>
+         </DataTemplate></DataGridTemplateColumn.CellTemplate>
+        </DataGridTemplateColumn>
+        <DataGridTextColumn Header="ID" Binding="{Binding ElementId}" Width="70"/>
+        <DataGridTextColumn Header="Элемент" Binding="{Binding ElementName}" Width="1.2*"/>
+        <DataGridTextColumn Header="Категория" Binding="{Binding Category}" Width="90"/>
+        <DataGridTextColumn Header="Описание" Binding="{Binding Message}" Width="2*">
+         <DataGridTextColumn.ElementStyle><Style TargetType="TextBlock"><Setter Property="TextTrimming" Value="CharacterEllipsis"/><Setter Property="ToolTip" Value="{Binding Message}"/></Style></DataGridTextColumn.ElementStyle>
+        </DataGridTextColumn>
+       </DataGrid.Columns>
+      </DataGrid>
+      <Border Grid.Row="2" Background="#F2F6F8" Padding="12" Margin="0,12,0,0" CornerRadius="5" MinHeight="68">
+       <StackPanel><TextBlock Text="{Binding SelectedIssue.Message, TargetNullValue=Выберите замечание для подробностей, FallbackValue=Выберите замечание для подробностей}" TextWrapping="Wrap"/>
+        <TextBlock Text="{Binding SelectedIssue.UniqueId}" Foreground="#728595" FontSize="10" Margin="0,5,0,0"/>
+       </StackPanel>
+      </Border>
+     </Grid>
+    </TabItem>
+    <TabItem Header="  История проверок  ">
+     <Grid Margin="0,12,0,0">
+      <Grid.RowDefinitions><RowDefinition Height="Auto"/><RowDefinition Height="*"/><RowDefinition Height="Auto"/></Grid.RowDefinitions>
+      <TextBlock Text="Последние 50 проверок этого документа. История хранится в SQLite." Foreground="#728595" Margin="0,0,0,14"/>
+      <DataGrid x:Name="HistoryTable" Grid.Row="1" ItemsSource="{Binding History}" SelectedItem="{Binding SelectedHistory}" AutomationProperties.AutomationId="HistoryGrid">
+       <DataGrid.Columns>
+        <DataGridTextColumn Header="Дата проверки" Binding="{Binding CreatedAt.LocalDateTime, Mode=OneWay, StringFormat=dd.MM.yyyy HH:mm:ss}" Width="180"/>
+        <DataGridTextColumn Header="Документ" Binding="{Binding Title}" Width="*"/>
+        <DataGridTextColumn Header="Элементы" Binding="{Binding ElementCount}" Width="100"/>
+        <DataGridTextColumn Header="Ошибки" Binding="{Binding ErrorCount}" Width="90"/>
+        <DataGridTextColumn Header="Внимание" Binding="{Binding WarningCount}" Width="100"/>
+       </DataGrid.Columns>
+      </DataGrid>
+      <Button Grid.Row="2" Content="Открыть выбранный отчёт" HorizontalAlignment="Right" Margin="0,14,0,0" Click="LoadHistory"/>
+     </Grid>
+    </TabItem>
+   </TabControl>
+   <Grid Grid.Row="3" Margin="0,18,0,0">
+    <Grid.ColumnDefinitions><ColumnDefinition Width="*"/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions>
+    <StackPanel VerticalAlignment="Center">
+     <TextBlock Text="{Binding Status}" FontSize="11" Foreground="#728595" TextWrapping="Wrap" Margin="0,0,12,3"/>
+     <TextBlock Text="{Binding VisibleIssues.Count, StringFormat=Показано замечаний: {0}}" FontSize="10" Foreground="#728595"/>
+    </StackPanel>
+    <StackPanel Grid.Column="1" Orientation="Horizontal">
+     <Button Content="Показать в Revit ↗" IsEnabled="{Binding CanNavigate}" Click="Navigate"
+      Background="#147D70" Foreground="White" BorderBrush="#147D70" ToolTip="Закрыть отчёт и перейти к выбранному элементу"/>
+     <Button Content="Закрыть" Click="CloseWindow" AutomationProperties.AutomationId="CloseReport"/>
+    </StackPanel>
+   </Grid>
+  </Grid>
+ </Grid>
+</Window>

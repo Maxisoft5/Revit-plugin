@@ -1,0 +1,7 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <ItemGroup>
+    <ProjectReference Include="../BimGuard.Core/BimGuard.Core.csproj" />
+    <PackageReference Include="Microsoft.Data.Sqlite" Version="8.0.32" />
+    <PackageReference Include="SQLitePCLRaw.bundle_e_sqlite3" Version="2.1.14" />
+  </ItemGroup>
+</Project>

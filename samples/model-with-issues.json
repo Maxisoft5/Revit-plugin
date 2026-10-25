@@ -1,0 +1,97 @@
+{
+  "documentKey": "demo-residential-a",
+  "title": "Жилой корпус А · АР",
+  "elements": [
+    {
+      "id": 101,
+      "uniqueId": "demo-wall-101",
+      "category": "Walls",
+      "name": "Стена • Кирпич 250 мм",
+      "mark": "W-01",
+      "level": "01 — Первый этаж"
+    },
+    {
+      "id": 102,
+      "uniqueId": "demo-wall-102",
+      "category": "Walls",
+      "name": "Стена • Кирпич 250 мм",
+      "mark": " w-01 ",
+      "level": "01 — Первый этаж"
+    },
+    {
+      "id": 201,
+      "uniqueId": "demo-door-201",
+      "category": "Doors",
+      "name": "Дверь • Двупольная 1400",
+      "mark": null,
+      "level": "01 — Первый этаж"
+    },
+    {
+      "id": 301,
+      "uniqueId": "demo-window-301",
+      "category": "Windows",
+      "name": "Окно • Витраж 2400",
+      "mark": "ОК-02",
+      "level": null
+    },
+    {
+      "id": 401,
+      "uniqueId": "demo-room-401",
+      "category": "Rooms",
+      "name": "Помещение • Холл",
+      "mark": "101",
+      "level": "01 — Первый этаж",
+      "areaSquareMeters": 0
+    },
+    {
+      "id": 402,
+      "uniqueId": "demo-room-402",
+      "category": "Rooms",
+      "name": "Помещение • Переговорная",
+      "mark": "102",
+      "level": "01 — Первый этаж",
+      "areaSquareMeters": 26.5
+    },
+    {
+      "id": 501,
+      "uniqueId": "demo-floor-501",
+      "category": "Floors",
+      "name": "Перекрытие • Монолит 200",
+      "mark": "П-01",
+      "level": "01 — Первый этаж"
+    },
+    {
+      "id": 202,
+      "uniqueId": "demo-door-202",
+      "category": "Doors",
+      "name": "Дверь • Однопольная 900",
+      "mark": "Д-02",
+      "level": "01 — Первый этаж"
+    },
+    {
+      "id": 302,
+      "uniqueId": "demo-window-302",
+      "category": "Windows",
+      "name": "Окно • Двухстворчатое",
+      "mark": "ОК-03",
+      "level": "02 — Второй этаж"
+    },
+    {
+      "id": 103,
+      "uniqueId": "demo-wall-103",
+      "category": "Walls",
+      "name": "Стена • Перегородка ГКЛ",
+      "mark": "W-03",
+      "level": null
+    },
+    {
+      "id": 403,
+      "uniqueId": "demo-room-403",
+      "category": "Rooms",
+      "name": "Помещение • Без размещения",
+      "mark": null,
+      "level": "02 — Второй этаж",
+      "areaSquareMeters": 0
+    }
+  ]
+}

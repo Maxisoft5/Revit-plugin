@@ -1,0 +1,3 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <ItemGroup><ProjectReference Include="../BimGuard.Core/BimGuard.Core.csproj" /></ItemGroup>
+</Project>

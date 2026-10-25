@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RevitAddIns>
+  <AddIn Type="Application">
+    <Name>BIM Guard</Name>
+    <Assembly>__ASSEMBLY_PATH__</Assembly>
+    <AddInId>4B5B0E69-B542-4D5B-9DBE-17D21A35C923</AddInId>
+    <FullClassName>BimGuard.Revit.Application</FullClassName>
+    <VendorId>dev.bimguard</VendorId>
+    <VendorDescription>BIM Guard — проверка данных архитектурных моделей Revit</VendorDescription>
+  </AddIn>
+  <ManifestSettings>
+    <UseRevitContext>False</UseRevitContext>
+    <ContextName>BimGuard</ContextName>
+  </ManifestSettings>
+</RevitAddIns>

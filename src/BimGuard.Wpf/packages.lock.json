@@ -1,0 +1,76 @@
+{
+  "version": 1,
+  "dependencies": {
+    "net8.0-windows7.0": {
+      "Microsoft.Data.Sqlite": {
+        "type": "Transitive",
+        "resolved": "8.0.32",
+        "contentHash": "QiIFqlx71pu+i7Ami9mTqgyw4UdDKDHIfyiIJTddxtn2qHNUHGFU25yfda95b3rPUBV0LyqXoDkVT37TBY7+0A==",
+        "dependencies": {
+          "Microsoft.Data.Sqlite.Core": "8.0.32",
+          "SQLitePCLRaw.bundle_e_sqlite3": "2.1.13"
+        }
+      },
+      "Microsoft.Data.Sqlite.Core": {
+        "type": "Transitive",
+        "resolved": "8.0.32",
+        "contentHash": "SCH/A3+jFleRu7s+hpihD799znF59JMUhFpvSQ5yep2K3GOftEzLzhrPUUrTiVUqK6VvzhFDeZOxmZEEqybwaQ==",
+        "dependencies": {
+          "SQLitePCLRaw.core": "2.1.13"
+        }
+      },
+      "SQLitePCLRaw.bundle_e_sqlite3": {
+        "type": "Transitive",
+        "resolved": "2.1.14",
+        "contentHash": "Y6K7m+7ODFmGwAC/ApJY3c68Rq4WPgoIj4GOceagaTow5tLzaJwD9invSWzU8bSMTcKOR101a1ZaU0LQ5SoX/Q==",
+        "dependencies": {
+          "SQLitePCLRaw.lib.e_sqlite3": "2.1.14",
+          "SQLitePCLRaw.provider.e_sqlite3": "2.1.14"
+        }
+      },
+      "SQLitePCLRaw.core": {
+        "type": "Transitive",
+        "resolved": "2.1.14",
+        "contentHash": "LqyPmc38sTnZGivatrJ918DhnohR4SUg+I+9ps+nYrh3VC1sRakjpbJfiRLHRstRT7O9l+BOP/zser8vw+qPPw==",
+        "dependencies": {
+          "System.Memory": "4.5.3"
+        }
+      },
+      "SQLitePCLRaw.lib.e_sqlite3": {
+        "type": "Transitive",
+        "resolved": "2.1.14",
+        "contentHash": "h32f78UhMGzr3l2kO8t1+qp7ItqfbmyAFTLjBHqL13/kNeKOR6K6FhOQe/gOzlHnUSFAYNUt3JoVPAEjFRIB9g=="
+      },
+      "SQLitePCLRaw.provider.e_sqlite3": {
+        "type": "Transitive",
+        "resolved": "2.1.14",
+        "contentHash": "53lrHTKoz5jCmwUjiiYD/mZUr34XCAk+Cd2T5fBrCGs7zI956cBSouWoX5owO67QA45YlzsWKSUJE/Ajc5h1bQ==",
+        "dependencies": {
+          "SQLitePCLRaw.core": "2.1.14"
+        }
+      },
+      "System.Memory": {
+        "type": "Transitive",
+        "resolved": "4.5.3",
+        "contentHash": "3oDzvc/zzetpTKWMShs1AADwZjQ/36HnsufHRPcOjyRAAMLDlu2iD33MBI2opxnezcVUtXyqDXXjoFMOU9c7SA=="
+      },
+      "bimguard.core": {
+        "type": "Project"
+      },
+      "bimguard.infrastructure": {
+        "type": "Project",
+        "dependencies": {
+          "BimGuard.Core": "[1.0.0, )",
+          "Microsoft.Data.Sqlite": "[8.0.32, )",
+          "SQLitePCLRaw.bundle_e_sqlite3": "[2.1.14, )"
+        }
+      },
+      "bimguard.presentation": {
+        "type": "Project",
+        "dependencies": {
+          "BimGuard.Core": "[1.0.0, )"
+        }
+      }
+    }
+  }
+}
